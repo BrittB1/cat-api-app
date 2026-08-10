@@ -209,3 +209,27 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+nav a {
+  padding: 0.6rem 1rem;
+  border-radius: 20px;
+  color: #1e395b;
+  text-decoration: none;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #7c9cbd;
+}
+
+nav a:hover {
+  background: #cce0f7;
+}
+
+nav a.active {
+  background: #98c3f3;
+}
