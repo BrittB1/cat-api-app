@@ -1,4 +1,4 @@
-//This will contain the cat API functionality 
+// This will contain the cat API functionality
 
 import { useState, useEffect } from "react";
 import { getRandomCats } from "../services/api.js";
