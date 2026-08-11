@@ -1,25 +1,40 @@
-// Displays one cat and handles its favorite button
+import pawButton from "../assets/images/paw-button.png";
+
+// Displays one cat and handles its favorite button.
 function Card({ cat, isFavorite, onToggleFavorite }) {
-  // Get the breed name from the API data
-  const breedName = cat.breeds?.[0]?.name ?? "Unknown breed";
+// Get the breed name from the API data.
+// If the API doesn't provide a breed, display "Unknown breed".
+const breedName = cat.breeds?.[0]?.name ?? "Unknown breed";
 
-  return (
-    <article className="card">
-      <img src={cat.url} alt="A cat" loading="lazy" />
+return (
+<article className="card">
+{/* Displays the cat image from the API. */}
+<img src={cat.url} alt="A cat" loading="lazy" />
 
-      <p className="breed">{breedName}</p>
+  {/* Displays the cat's breed name. */}
+  <p className="breed">{breedName}</p>
 
-      {/* Button uses props to add or remove this cat from favorites */}
-      <button
-        type="button"
-        className={`fav-button ${isFavorite ? "is-favorite" : ""}`}
-        onClick={() => onToggleFavorite(cat)}
-        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-      >
-        ♥
-      </button>
-    </article>
-  );
+  {/* 
+    The favorite button uses props to add or remove this cat
+    from the user's favorites.
+    
+    The isFavorite prop determines which state the button is in,
+    while onToggleFavorite handles the click.
+  */}
+  <button
+    type="button"
+    className={`fav-button ${isFavorite ? "is-favorite" : ""}`}
+    onClick={() => onToggleFavorite(cat)}
+    aria-label={
+      isFavorite ? "Remove from favorites" : "Add to favorites"
+    }
+  >
+    {/* Paw image replaces the previous heart icon. */}
+    <img src={pawButton} alt="" />
+  </button>
+</article>
+
+);
 }
 
 export default Card;
