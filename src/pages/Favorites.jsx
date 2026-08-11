@@ -1,9 +1,9 @@
 import Gallery from "../components/Gallery";
 
 // Displays the user's saved cats
-function Favorites ({favorites,onToggleFavorites}) {
+function Favorites({ favorites, onToggleFavorite }) {
 
-  const favorites = favorites.map((fav) => ({
+  const favoriteCats = favorites.map((fav) => ({
     id: fav.imageId,
     url: fav.url,
   }));
@@ -17,9 +17,9 @@ function Favorites ({favorites,onToggleFavorites}) {
         <p>You don't have any favorite cats yet.</p>
       ) : (
         <Gallery
-        cats={favoriteCats}
-        favorites={favorites}
-        onToggleFavorites={onToggleFavorites}
+          cats={favoriteCats}
+          favorites={favorites}
+          onToggleFavorite={onToggleFavorite}
         />
       )}
     </main>
