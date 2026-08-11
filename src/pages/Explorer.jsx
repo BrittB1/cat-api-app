@@ -1,8 +1,13 @@
 // This page handles loading and displaying random cats from the Cat API.
 
 import { useState, useEffect, useRef } from "react";
-import { getRandomCats } from "../services/api.js";
+import {
+  getRandomCats,
+  searchBreeds,
+  getImagesByBreed,
+} from "../services/api.js";
 import Gallery from "../components/Gallery.jsx";
+import SearchBar from "../components/SearchBar.jsx";
 
 function Explorer({ favorites, onToggleFavorite }) {
   // Stores the cats returned from the API.
@@ -12,7 +17,6 @@ function Explorer({ favorites, onToggleFavorite }) {
   const [status, setStatus] = useState("");
 
   // Keeps track of whether the initial API request has already happened.
-  // useRef stores a value without causing the component to re-render.
   const hasLoaded = useRef(false);
 
   // Requests a new set of random cats from the API.
@@ -26,6 +30,32 @@ function Explorer({ favorites, onToggleFavorite }) {
     } catch (error) {
       console.error(error);
       setStatus("Something went wrong loading cats. Please try again.");
+    }
+  }
+
+  // Searches for cats by breed.
+  async function handleSearch(query) {
+    setStatus("Searching...");
+
+    try {
+      // Find the breed that matches the user's search.
+      const breeds = await searchBreeds(query);
+
+      if (breeds.length === 0) {
+        setCats([]);
+        setStatus("No breed found. Try another search.");
+        return;
+      }
+
+      // Use the matching breed's ID to get cats from that breed.
+      const breedId = breeds[0].id;
+      const data = await getImagesByBreed(breedId, 9);
+
+      setCats(data);
+      setStatus("");
+    } catch (error) {
+      console.error(error);
+      setStatus("Something went wrong with the search.");
     }
   }
 
@@ -45,6 +75,11 @@ function Explorer({ favorites, onToggleFavorite }) {
         <h1>Explore Cats</h1>
         <p className="tagline">Find your next favorite feline!</p>
       </header>
+
+      {/* SearchBar lets the user search for a cat breed. */}
+      <section className="search-row">
+        <SearchBar onSearch={handleSearch} />
+      </section>
 
       {/* Button lets the user request a fresh set of random cats. */}
       <section className="controls">
