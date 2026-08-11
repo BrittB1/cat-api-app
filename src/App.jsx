@@ -41,16 +41,14 @@ const [favorite,setFavorites] = useState([]);
   }
 
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explorer />} />
         <Route path="/favorites" element={<Favorites />} />
       </Routes>
-    </BrowserRouter>
+      </>
   );
 }
-
 export default App;

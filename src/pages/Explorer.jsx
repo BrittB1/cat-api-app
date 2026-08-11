@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { getRandomCats } from "../services/api.js";
 import Gallery from "../components/Gallery.jsx";
 
-function Explorer() {
+function Explorer({favorites, onToggleFavorites}) {
   // Stores the cats returned from the API
   const [cats, setCats] = useState([]);
 
@@ -55,7 +55,7 @@ function Explorer() {
       <p className="status">{status}</p>
 
       {/* Passes the cats from Explorer to the Gallery component */}
-      <Gallery cats={cats} />
+      <Gallery cats={cats} favorites={favorites} onToggleFavorite={onToggleFavorite} />
     </main>
   );
 }
