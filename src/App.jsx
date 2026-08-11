@@ -6,16 +6,14 @@ import Favorites from "./pages/Favorites.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explorer />} />
         <Route path="/favorites" element={<Favorites />} />
       </Routes>
-    </BrowserRouter>
+      </>
   );
 }
-
 export default App;
