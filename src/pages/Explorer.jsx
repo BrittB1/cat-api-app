@@ -1,21 +1,21 @@
-// This page handles loading and displaying random cats from the Cat API
+// This page handles loading and displaying random cats from the Cat API.
 
 import { useState, useEffect, useRef } from "react";
 import { getRandomCats } from "../services/api.js";
 import Gallery from "../components/Gallery.jsx";
 
-function Explorer({favorites, onToggleFavorites}) {
-  // Stores the cats returned from the API
+function Explorer({ favorites, onToggleFavorite }) {
+  // Stores the cats returned from the API.
   const [cats, setCats] = useState([]);
 
-  // Stores loading and error messages
+  // Stores loading and error messages.
   const [status, setStatus] = useState("");
 
   // Keeps track of whether the initial API request has already happened.
   // useRef stores a value without causing the component to re-render.
   const hasLoaded = useRef(false);
 
-  // Requests a new set of random cats from the API
+  // Requests a new set of random cats from the API.
   async function loadRandomCats() {
     setStatus("Loading cats...");
 
@@ -40,22 +40,32 @@ function Explorer({favorites, onToggleFavorites}) {
   }, []);
 
   return (
-    <main className="panel">
-      <h1>Explore Cats</h1>
-      <p>Find your next favorite feline!</p>
+    <main>
+      <header className="app-header">
+        <h1>Explore Cats</h1>
+        <p className="tagline">Find your next favorite feline!</p>
+      </header>
 
-      {/* Button lets the user request a fresh set of random cats */}
+      {/* Button lets the user request a fresh set of random cats. */}
       <section className="controls">
-        <button type="button" className="button" onClick={loadRandomCats}>
+        <button
+          type="button"
+          className="button"
+          onClick={loadRandomCats}
+        >
           Get some Cats!
         </button>
       </section>
 
-      {/* Displays loading or error messages when needed */}
+      {/* Displays loading or error messages when needed. */}
       <p className="status">{status}</p>
 
-      {/* Passes the cats from Explorer to the Gallery component */}
-      <Gallery cats={cats} favorites={favorites} onToggleFavorite={onToggleFavorite} />
+      {/* Passes the cats and favorite information to the Gallery. */}
+      <Gallery
+        cats={cats}
+        favorites={favorites}
+        onToggleFavorite={onToggleFavorite}
+      />
     </main>
   );
 }
