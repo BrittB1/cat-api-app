@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-image: url("./assets/images/meadow.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+}
+
 #root {
     min-height: 100vh;
     display: flex;
