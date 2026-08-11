@@ -1,6 +1,12 @@
+import Gallery from "../components/Gallery";
+
 // Displays the user's saved cats
-function Favorites() {
-  const favorites = [];
+function Favorites ({favorites,onToggleFavorites}) {
+
+  const favorites = favorites.map((fav) => ({
+    id: fav.imageId,
+    url: fav.url,
+  }));
 
   return (
     <main className="favorites">
@@ -10,10 +16,13 @@ function Favorites() {
       {favorites.length === 0 ? (
         <p>You don't have any favorite cats yet.</p>
       ) : (
-        <p>Your favorite felines will appear here.</p>
+        <Gallery
+        cats={favoriteCats}
+        favorites={favorites}
+        onToggleFavorites={onToggleFavorites}
+        />
       )}
     </main>
   );
 }
-
 export default Favorites;
