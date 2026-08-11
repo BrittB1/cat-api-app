@@ -1,3 +1,5 @@
+import pawButton from "../assets/images/paw-button.png";
+
 // Displays one cat and handles its favorite button
 function Card({ cat, isFavorite, onToggleFavorite }) {
   // Get the breed name from the API data
@@ -16,7 +18,7 @@ function Card({ cat, isFavorite, onToggleFavorite }) {
         onClick={() => onToggleFavorite(cat)}
         aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
       >
-        ♥
+        <img src={pawButton} alt="" />
       </button>
     </article>
   );
